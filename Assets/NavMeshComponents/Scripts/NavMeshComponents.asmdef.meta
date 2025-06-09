@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 93128222d1f75a143aa95cb7d7908d49
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156015
+  packageName: Unity Learn | FPS Microgame | URP
+  packageVersion: 3.1.0
+  assetPath: Assets/NavMeshComponents/Scripts/NavMeshComponents.asmdef
+  uploadId: 627568
