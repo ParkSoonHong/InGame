@@ -70,7 +70,7 @@ public class CurrencyManager : MonoBehaviour
     public void Add(ECurrencyType type, int value)
     {
         _currencies[type].Add(value);
-
+        AchievementManager.Instance.Increase(EAchievementCondition.GoldCollect, value);
         _repository.Save(ToDtoList());
         OnDataChanged?.Invoke();
     }
