@@ -24,10 +24,5 @@ public class AccountEmailSpecification : ISpecification<string>
         return true;
     }
 
-    internal bool IsSatisfiedBy(string email)
-    {
-        throw new NotImplementedException();
-    }
-
     public string ErrorMessage { get; private set; }
 }

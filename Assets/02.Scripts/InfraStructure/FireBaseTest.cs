@@ -41,7 +41,7 @@ public class FirebaseTest : MonoBehaviour
         });
     }
 
-    private void Register()
+    private  void Register()
     {
         var email = "teemo@gmail.com";
         var password = "123456";
@@ -122,7 +122,7 @@ public class FirebaseTest : MonoBehaviour
     private void AddMyRanking()
     {
 
-        var ranking = new Ranking("sk@t.com", "ttt", 233);
+        var ranking = new Ranking("tete@test.com", "ttt", 233);
 
         var rankingDict = new Dictionary<string, object>
         {
@@ -174,7 +174,8 @@ public class FirebaseTest : MonoBehaviour
 
     private void GetMyRankings()
     {
-        Query capitalQuery = _db.Collection("rankings");
+        //쿼리(질의)란 컬렉션으로부터 데이터를 가져올때 어떻게 가져와라라고 쓰는 명령문
+        Query capitalQuery = _db.Collection("rankings").OrderByDescending("Score");
 
         capitalQuery.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
