@@ -12,21 +12,23 @@ public class Ranking
     public Ranking(string email, string nickname, int score)
     {
         var emailSpecification = new AccountEmailSpecification();
-        if (!emailSpecification.IsSatisfiedBy(email))
-        {
-            throw new Exception(emailSpecification.ErrorMessage);
-        }
+        //if (!emailSpecification.IsSatisfiedBy(email))
+        //{
+        //    Debug.Log("이메일 오류");
+        //    throw new Exception(emailSpecification.ErrorMessage);
+        //}
 
-        var nickNameSpecification = new AccountNickNameSpedcification();
-        if (!nickNameSpecification.IsSpecificationBy(nickname))
-        {
-            throw new Exception(nickNameSpecification.ErrorMessage);
-        }
+        //var nickNameSpecification = new AccountNickNameSpedcification();
+        //if (!nickNameSpecification.IsSpecificationBy(nickname))
+        //{
+        //    Debug.Log("닉네임 오류");
+        //    throw new Exception(nickNameSpecification.ErrorMessage);
+        //}
 
-        if (score < 0)
-        {
-            throw new Exception("올바르지 못한 점수입니다.");
-        }
+        //if (score < 0)
+        //{
+        //    throw new Exception("올바르지 못한 점수입니다.");
+        //}
 
         Email = email;
         Nickname = nickname;
