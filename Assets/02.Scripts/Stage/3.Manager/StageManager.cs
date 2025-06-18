@@ -1,16 +1,47 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static StageManager Instance;
+
+    // 도메인에 변화가 있을 때 호출되는 액션
+    public event Action OnDataChanged;
+
+    [SerializeField]
+    private List<StageLevelSO> _levelSOList;
+    private Stage _stage;
+    public StageDTO Stage => _stage.ToDTO();
+
+    private StageRepository _repository;
+    
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Init()
     {
+        _repository = new StageRepository();
         
+        StageSaveData stageSaveData = _repository.Load();
+        _stage = new Stage(stageSaveData.LevelNumber, stageSaveData.SubLevelNumber, stageSaveData.ProgressTime, stageSaveData.Levels);
+        OnDataChanged?.Invoke();
+    }
+
+    private void Update()
+    {
+        _stage.Progress(Time.deltaTime, OnDataChanged);
     }
 }

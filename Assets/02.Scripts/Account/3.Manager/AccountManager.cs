@@ -26,6 +26,7 @@ public class AccountManager : MonoBehaviour
             Destroy(gameObject);
         }
         Init();
+        Debug.Log("Gig");
     }
 
     public void Init()

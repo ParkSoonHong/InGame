@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 public class AccountNickNameSpedcification : ISpecification<string>
 {
     // ´Ğ³×ÀÓ: ÇÑ±Û ¶Ç´Â ¿µ¾î·Î ±¸¼º, 2~7ÀÚ
-    private static readonly Regex NicknameRegex = new Regex(@"^[°¡-ÆRa-zA-Z]{2,7}$", RegexOptions.Compiled);
+    private static readonly Regex NicknameRegex = new Regex(@"^[0-9°¡-ÆRa-zA-Z]{2,12}$", RegexOptions.Compiled);
 
     // ±İÁöµÈ ´Ğ³×ÀÓ (ºñ¼Ó¾î µî)
     private static readonly string[] ForbiddenNicknames = { "¹Ùº¸", "¸ÛÃ»ÀÌ", "¿î¿µÀÚ", "¹Ú¼øÈ«" };
@@ -20,7 +20,7 @@ public class AccountNickNameSpedcification : ISpecification<string>
 
         if (!NicknameRegex.IsMatch(value))
         {
-            ErrorMessage = "´Ğ³×ÀÓÀº 2ÀÚ ÀÌ»ó 7ÀÚ ÀÌÇÏÀÇ ÇÑ±Û ¶Ç´Â ¿µ¹®ÀÌ¾î¾ß ÇÕ´Ï´Ù.";
+            ErrorMessage = "´Ğ³×ÀÓÀº 2ÀÚ ÀÌ»ó 12ÀÚ ÀÌÇÏÀÇ ÇÑ±Û ¶Ç´Â ¿µ¹®ÀÌ¾î¾ß ÇÕ´Ï´Ù.";
             return false;
         }
 
