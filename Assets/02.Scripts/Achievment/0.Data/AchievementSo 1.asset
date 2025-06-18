@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: ACH_MONEY_001
   _name: "\uCCAB \uC218\uC775"
-  _description: "00 \uACE8\uB4DC \uD68D\uB4DD"
+  _description: "100 \uACE8\uB4DC \uD68D\uB4DD"
   _condition: 0
   _goalValue: 100
   _rewardCurrencyType: 0

@@ -8,7 +8,7 @@ public class AchievmentRepository
 {
     private const string SAVE_KEY = nameof(AchievmentRepository);
 
-   public void save(List<AchievementDTO> achievements)
+   public void Save(List<AchievementDTO> achievements)
     {
         AchievementSaveDataList datas = new AchievementSaveDataList();
         datas.DataList = achievements.ConvertAll(achievement => new AchievementSaveData

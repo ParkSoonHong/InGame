@@ -71,7 +71,7 @@ public class CurrencyManager : MonoBehaviour
     {
         _currencies[type].Add(value);
         AchievementManager.Instance.Increase(EAchievementCondition.GoldCollect, value);
-        _repository.Save(ToDtoList());
+        _repository.Save(ToDtoList(), AccountManager.Instance.CurrentAccount.Email);
         OnDataChanged?.Invoke();
     }
 
@@ -93,7 +93,7 @@ public class CurrencyManager : MonoBehaviour
             return false;
         }
 
-        _repository.Save(ToDtoList());
+        _repository.Save(ToDtoList(), AccountManager.Instance.CurrentAccount.Email);
         OnDataChanged?.Invoke();
         return true;
     }

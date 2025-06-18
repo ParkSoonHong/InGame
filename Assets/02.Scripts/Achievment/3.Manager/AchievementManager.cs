@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class AchievementManager : MonoBehaviour
@@ -14,6 +16,8 @@ public class AchievementManager : MonoBehaviour
     public List<AchievementDTO> Achievements => _achievements.ConvertAll((a) => new AchievementDTO(a));
 
     public event Action OnDataChanged;
+
+    public event Action<AchievementDTO> OnAchievementDone;
 
     private AchievmentRepository _repository;
     private void Awake()
@@ -53,6 +57,11 @@ public class AchievementManager : MonoBehaviour
 
     }
 
+    private AchievementDTO FindByDTOId(string id)
+    {
+        return Achievements.Find(a => a.Id == id);
+    }
+
     private Achievement FindById(string id)
     {
         return _achievements.Find(a => a.Id == id);
@@ -64,11 +73,15 @@ public class AchievementManager : MonoBehaviour
         {
             if (achievement.Condition == condition)
             {
-                achievement.Increase(value);
+                if(achievement.TryDone(value))
+                {
+                    OnAchievementDone?.Invoke(FindByDTOId(achievement.Id));
+                }
             }
         }
 
         OnDataChanged?.Invoke();
+        _repository.Save(Achievements);
     }
 
     public bool TryClaimReward(AchievementDTO achievementDto)
@@ -84,7 +97,7 @@ public class AchievementManager : MonoBehaviour
             CurrencyManager.Instance.Add(achievement.RewardCurrencyType, achievement.RewardAmount);
 
             OnDataChanged?.Invoke();
-
+            _repository.Save(Achievements);
             return true;
         }
 

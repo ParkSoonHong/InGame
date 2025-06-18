@@ -89,7 +89,7 @@ public class Achievement
         {
             throw new Exception("업적 보상 값은 0보다 커야합니다.");
         }
-        if(loadedData.CurrentValue != 0)
+        if(loadedData.CurrentValue < 0)
         {
             throw new Exception("업적 보상 값은 0보다 커야합니다.");
         }
@@ -106,7 +106,17 @@ public class Achievement
         _rewardClaimed = loadedData.RewardClaimed;
     }
 
-    public void Increase(int value)
+    public void Increase (int value)
+    {
+        if (value <= 0)
+        {
+            throw new Exception("증가 값은 0보다 커야합니다.");
+        }
+
+        _currentValue += value;
+    }
+
+    public bool TryDone(int value)
     {
         if(value <= 0)
         {
@@ -114,7 +124,15 @@ public class Achievement
         }
 
         _currentValue += value;
+        if(_currentValue >= GoalValue)
+        {
+            return true;
+        }
+
+        return false;
     }
+
+
 
     public bool CanClaimReward()
     {
